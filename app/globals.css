@@ -23,6 +23,7 @@
 @layer base {
   html,
   body {
+    overflow-x: clip;
     background-color: var(--color-surface);
     color: var(--color-ink);
     font-family: var(--font-sans);

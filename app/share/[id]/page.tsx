@@ -175,7 +175,7 @@ export default function ShareViewPage() {
   return (
     <div className="max-w-xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
       <div className="p-6 sm:p-8 rounded border border-neutral-200 bg-white">
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <span className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
             Zero-Knowledge Shared Secret
           </span>

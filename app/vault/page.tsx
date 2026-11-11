@@ -512,12 +512,12 @@ export default function VaultPage() {
       {/* Top Account & Zero-Knowledge Status Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-200">
         <div>
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2.5">
             <span className="text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded border border-[#0E7A5F]/30 bg-[#f0fdf8] text-[#0E7A5F] font-semibold">
               {activePassphrase ? "Vault Unlocked (In-Memory)" : "Vault Locked"}
             </span>
             {user && (
-              <span className="text-xs text-neutral-500 font-mono">
+              <span className="text-xs text-neutral-500 font-mono break-all min-w-0">
                 {user.email}
               </span>
             )}
