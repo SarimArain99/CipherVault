@@ -66,16 +66,16 @@ export default function SignUpPage() {
 
   return (
     <div className="max-w-md mx-auto px-4 sm:px-6 py-16 sm:py-20">
-      <div className="border border-neutral-200 rounded bg-white p-6 sm:p-8">
-        <div className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+      <div className="border border-line rounded bg-surface p-6 sm:p-8">
+        <div className="text-xs font-mono text-brass font-semibold">
           Zero-Knowledge Account Setup
         </div>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight text-[#0a0a0a]">
+        <h1 className="mt-2 text-2xl font-bold tracking-tight text-heading">
           Create your CipherVault account
         </h1>
 
-        <div className="mt-4 p-3.5 rounded border border-[#0E7A5F]/30 bg-[#f0fdf8] text-xs text-neutral-800 leading-relaxed">
-          <p className="font-semibold text-[#0E7A5F]">
+        <div className="mt-4 p-3.5 rounded border border-brass/30 bg-brass/10 text-xs text-body leading-relaxed">
+          <p className="font-semibold text-brass">
             Important Security Separation:
           </p>
           <p className="mt-1">
@@ -86,7 +86,7 @@ export default function SignUpPage() {
         {error && (
           <div
             role="alert"
-            className="mt-5 p-3.5 rounded border border-red-300 bg-red-50 text-xs text-red-900 leading-relaxed"
+            className="mt-5 p-3.5 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200 leading-relaxed"
           >
             {error}
           </div>
@@ -96,7 +96,7 @@ export default function SignUpPage() {
           <div>
             <label
               htmlFor="email"
-              className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+              className="block text-xs font-semibold text-body"
             >
               Email Address
             </label>
@@ -110,14 +110,14 @@ export default function SignUpPage() {
               onChange={(e) => setEmail(e.target.value)}
               disabled={loading}
               placeholder="you@domain.com"
-              className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F] disabled:opacity-60"
+              className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass disabled:opacity-60"
             />
           </div>
 
           <div>
             <label
               htmlFor="password"
-              className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+              className="block text-xs font-semibold text-body"
             >
               Login Password (Min 8 Characters)
             </label>
@@ -131,14 +131,14 @@ export default function SignUpPage() {
               onChange={(e) => setPassword(e.target.value)}
               disabled={loading}
               placeholder="Create a strong login password"
-              className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F] disabled:opacity-60"
+              className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass disabled:opacity-60"
             />
           </div>
 
           <div>
             <label
               htmlFor="confirmPassword"
-              className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+              className="block text-xs font-semibold text-body"
             >
               Confirm Login Password
             </label>
@@ -152,24 +152,24 @@ export default function SignUpPage() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               disabled={loading}
               placeholder="Re-enter your login password"
-              className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F] disabled:opacity-60"
+              className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass disabled:opacity-60"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 px-4 rounded bg-[#0E7A5F] text-white text-sm font-medium hover:bg-[#0b614b] transition-colors disabled:opacity-60 cursor-pointer"
+            className="w-full py-2.5 px-4 rounded bg-brass text-night text-sm font-medium hover:bg-brass-deep transition-colors disabled:opacity-60 cursor-pointer"
           >
             {loading ? "Creating Account..." : "Create Account"}
           </button>
         </form>
 
-        <div className="mt-6 pt-6 border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between">
+        <div className="mt-6 pt-6 border-t border-line text-xs text-body flex items-center justify-between">
           <span>Already registered?</span>
           <Link
             href="/signin"
-            className="font-semibold text-[#0E7A5F] hover:underline"
+            className="font-semibold text-steel hover:underline"
           >
             Sign in to existing account
           </Link>

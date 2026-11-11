@@ -30,13 +30,13 @@ export default function SiteHeader() {
   }, [menuOpen]);
 
   return (
-    <header className="border-b border-neutral-200 bg-white sticky top-0 z-40">
+    <header className="border-b border-line bg-surface sticky top-0 z-40">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
         <Link
           href="/"
-          className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-[#0a0a0a] hover:opacity-90 transition-opacity shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F] rounded"
+          className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-heading hover:opacity-90 transition-opacity shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass rounded"
         >
-          <span className="w-7 h-7 rounded bg-[#0E7A5F] flex items-center justify-center text-white font-mono text-xs font-bold">
+          <span className="w-7 h-7 rounded bg-brass flex items-center justify-center text-night font-mono text-xs font-bold">
             CV
           </span>
           <span>CipherVault</span>
@@ -46,26 +46,26 @@ export default function SiteHeader() {
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <Link
             href="/tools"
-            className="text-neutral-600 hover:text-[#0a0a0a] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F] rounded"
+            className="text-body hover:text-heading transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass rounded"
           >
             Crypto Tools
           </Link>
           <Link
             href="/vault"
-            className="text-neutral-600 hover:text-[#0a0a0a] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F] rounded"
+            className="text-body hover:text-heading transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass rounded"
           >
             Vault
           </Link>
-          <div className="h-4 w-px bg-neutral-200" aria-hidden="true" />
+          <div className="h-4 w-px bg-line" aria-hidden="true" />
           <Link
             href="/signin"
-            className="text-neutral-700 hover:text-[#0E7A5F] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F] rounded"
+            className="text-body hover:text-steel transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass rounded"
           >
             Sign In
           </Link>
           <Link
             href="/signup"
-            className="px-3.5 py-2 rounded bg-[#0E7A5F] text-white hover:bg-[#0b614b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F]"
+            className="px-3.5 py-2 rounded bg-brass text-night hover:bg-brass-deep transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass"
           >
             Create Account
           </Link>
@@ -78,7 +78,7 @@ export default function SiteHeader() {
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           onClick={() => setMenuOpen((open) => !open)}
-          className="md:hidden w-11 h-11 shrink-0 flex items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F] cursor-pointer"
+          className="md:hidden w-11 h-11 shrink-0 flex items-center justify-center rounded-lg text-body hover:bg-elevated active:bg-line transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass cursor-pointer"
         >
           <span className="relative block w-6 h-6" aria-hidden="true">
             <svg
@@ -87,7 +87,7 @@ export default function SiteHeader() {
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              className={`absolute inset-0 w-6 h-6 transition duration-200 ${
+              className={`absolute inset-0 w-6 h-6 transition duration-200 motion-reduce:transition-none ${
                 menuOpen ? "opacity-0 scale-90" : "opacity-100 scale-100"
               }`}
             >
@@ -101,7 +101,7 @@ export default function SiteHeader() {
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              className={`absolute inset-0 w-6 h-6 transition duration-200 ${
+              className={`absolute inset-0 w-6 h-6 transition duration-200 motion-reduce:transition-none ${
                 menuOpen ? "opacity-100 scale-100" : "opacity-0 scale-90"
               }`}
             >
@@ -116,14 +116,14 @@ export default function SiteHeader() {
       {menuOpen && (
         <nav
           aria-label="Mobile"
-          className="md:hidden border-t border-neutral-200 bg-white px-4 sm:px-6 py-2"
+          className="md:hidden border-t border-line bg-surface px-4 sm:px-6 py-2"
         >
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="block py-3.5 text-base font-medium text-neutral-700 hover:text-[#0E7A5F] border-b border-neutral-100 last:border-b-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F] rounded"
+              className="block py-3.5 text-base font-medium text-body hover:text-steel border-b border-line last:border-b-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass rounded"
             >
               {link.label}
             </Link>
@@ -131,7 +131,7 @@ export default function SiteHeader() {
           <Link
             href="/signup"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 mb-2 block text-center py-3 rounded bg-[#0E7A5F] text-white text-base font-medium hover:bg-[#0b614b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F]"
+            className="mt-2 mb-2 block text-center py-3 rounded bg-brass text-night text-base font-medium hover:bg-brass-deep transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass"
           >
             Create Account
           </Link>

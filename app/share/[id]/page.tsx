@@ -129,7 +129,7 @@ export default function ShareViewPage() {
   if (loading) {
     return (
       <div className="max-w-xl mx-auto px-4 sm:px-6 py-20">
-        <div className="p-8 rounded border border-neutral-200 bg-white text-xs font-mono text-neutral-600">
+        <div className="p-8 rounded border border-line bg-surface text-xs font-mono text-body">
           Fetching encrypted share payload...
         </div>
       </div>
@@ -139,20 +139,20 @@ export default function ShareViewPage() {
   if (expiredOrGone) {
     return (
       <div className="max-w-xl mx-auto px-4 sm:px-6 py-20">
-        <div className="p-8 rounded border border-neutral-200 bg-white">
-          <div className="text-xs font-mono uppercase tracking-wider text-red-700 font-semibold">
+        <div className="p-8 rounded border border-line bg-surface">
+          <div className="text-xs font-mono text-danger-300 font-semibold">
             HTTP 410 Gone
           </div>
-          <h1 className="mt-2 text-2xl font-bold text-[#0a0a0a]">
+          <h1 className="mt-2 text-2xl font-bold text-heading">
             This link has expired or been used up.
           </h1>
-          <p className="mt-2 text-sm text-neutral-600 leading-relaxed">
+          <p className="mt-2 text-sm text-body leading-relaxed">
             The encrypted share link you requested has either reached its maximum allowed view count, passed its expiration timestamp, or never existed.
           </p>
           <div className="mt-6">
             <Link
               href="/"
-              className="inline-block px-4 py-2.5 rounded bg-[#0E7A5F] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#0b614b] transition-colors"
+              className="inline-block px-4 py-2.5 rounded bg-brass text-night text-xs font-semibold hover:bg-brass-deep transition-colors"
             >
               Return to CipherVault
             </Link>
@@ -165,7 +165,7 @@ export default function ShareViewPage() {
   if (loadError || !payload) {
     return (
       <div className="max-w-xl mx-auto px-4 sm:px-6 py-20">
-        <div className="p-8 rounded border border-red-300 bg-red-50 text-sm text-red-900">
+        <div className="p-8 rounded border border-danger-400/40 bg-danger-400/10 text-sm text-danger-200">
           {loadError ?? "Could not load shared item."}
         </div>
       </div>
@@ -174,21 +174,21 @@ export default function ShareViewPage() {
 
   return (
     <div className="max-w-xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-      <div className="p-6 sm:p-8 rounded border border-neutral-200 bg-white">
+      <div className="p-6 sm:p-8 rounded border border-line bg-surface">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+          <span className="text-xs font-mono text-brass font-semibold">
             Zero-Knowledge Shared Secret
           </span>
-          <span className="text-xs font-mono text-neutral-500">
+          <span className="text-xs font-mono text-muted">
             View {payload.views} of {payload.max_views}
           </span>
         </div>
 
-        <h1 className="mt-2 text-2xl font-bold text-[#0a0a0a]">
+        <h1 className="mt-2 text-2xl font-bold text-heading">
           {payload.title}
         </h1>
 
-        <div className="mt-4 p-3.5 rounded border border-neutral-200 bg-[#f8faf9] text-xs text-neutral-700 leading-relaxed">
+        <div className="mt-4 p-3.5 rounded border border-line bg-elevated text-xs text-body leading-relaxed">
           <strong>Self-Destruct Notice:</strong> This encrypted payload was retrieved on view{" "}
           <span className="font-mono font-semibold">{payload.views}</span> of{" "}
           <span className="font-mono font-semibold">{payload.max_views}</span>{" "}
@@ -208,7 +208,7 @@ export default function ShareViewPage() {
             <div>
               <label
                 htmlFor="share-passphrase"
-                className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+                className="block text-xs font-semibold text-body"
               >
                 Decryption Passphrase
               </label>
@@ -220,14 +220,14 @@ export default function ShareViewPage() {
                 onChange={(e) => setPassphrase(e.target.value)}
                 disabled={decrypting}
                 placeholder="Enter the passphrase provided by the sender..."
-                className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
               />
             </div>
 
             {decryptError && (
               <div
                 role="alert"
-                className="p-3 rounded border border-red-300 bg-red-50 text-xs text-red-900"
+                className="p-3 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200"
               >
                 {decryptError}
               </div>
@@ -236,7 +236,7 @@ export default function ShareViewPage() {
             <button
               type="submit"
               disabled={decrypting}
-              className="w-full py-2.5 px-4 rounded bg-[#0E7A5F] text-white text-sm font-medium hover:bg-[#0b614b] transition-colors disabled:opacity-60 cursor-pointer"
+              className="w-full py-2.5 px-4 rounded bg-brass text-night text-sm font-medium hover:bg-brass-deep transition-colors disabled:opacity-60 cursor-pointer"
             >
               {decrypting
                 ? "Deriving PBKDF2 Key & Decrypting..."
@@ -245,20 +245,20 @@ export default function ShareViewPage() {
           </form>
         ) : (
           <div className="mt-6 space-y-4">
-            <div className="p-4 rounded border border-[#0E7A5F]/40 bg-[#f0fdf8]">
+            <div className="p-4 rounded border border-brass/40 bg-brass/10">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+                <span className="text-xs font-mono text-brass font-semibold">
                   Decrypted Secret
                 </span>
                 <button
                   type="button"
                   onClick={() => void handleCopy()}
-                  className="px-3 py-1 rounded bg-[#0E7A5F] text-white text-xs font-mono font-medium hover:bg-[#0b614b] transition-colors cursor-pointer"
+                  className="px-3 py-1 rounded bg-brass text-night text-xs font-mono font-medium hover:bg-brass-deep transition-colors cursor-pointer"
                 >
                   {copied ? "Copied to Clipboard" : "Copy Secret"}
                 </button>
               </div>
-              <pre className="p-3 rounded border border-neutral-200 bg-white text-xs font-mono text-[#0a0a0a] whitespace-pre-wrap break-all">
+              <pre className="p-3 rounded border border-line bg-elevated text-xs font-mono text-heading whitespace-pre-wrap break-all">
                 {decryptedSecret}
               </pre>
             </div>

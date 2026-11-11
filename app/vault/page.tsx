@@ -496,7 +496,7 @@ export default function VaultPage() {
   if (authChecking) {
     return (
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="p-8 border border-neutral-200 rounded bg-white text-sm text-neutral-600 font-mono">
+        <div className="p-8 border border-line rounded bg-surface text-sm text-body font-mono">
           Verifying authenticated session...
         </div>
       </div>
@@ -510,19 +510,19 @@ export default function VaultPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Top Account & Zero-Knowledge Status Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-line">
         <div>
           <div className="flex flex-wrap items-center gap-2.5">
-            <span className="text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded border border-[#0E7A5F]/30 bg-[#f0fdf8] text-[#0E7A5F] font-semibold">
+            <span className="text-xs font-mono px-2.5 py-0.5 rounded border border-ok-400/40 bg-ok-400/10 text-ok-300 font-semibold">
               {activePassphrase ? "Vault Unlocked (In-Memory)" : "Vault Locked"}
             </span>
             {user && (
-              <span className="text-xs text-neutral-500 font-mono break-all min-w-0">
+              <span className="text-xs text-muted font-mono break-all min-w-0">
                 {user.email}
               </span>
             )}
           </div>
-          <h1 className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-[#0a0a0a]">
+          <h1 className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-heading">
             Encrypted Vault
           </h1>
         </div>
@@ -532,7 +532,7 @@ export default function VaultPage() {
             <button
               type="button"
               onClick={handleLockVault}
-              className="px-4 py-2 rounded border border-neutral-300 bg-white text-xs font-semibold uppercase tracking-wider text-[#0a0a0a] hover:border-[#0a0a0a] transition-colors cursor-pointer"
+              className="px-4 py-2 rounded border border-muted/60 bg-elevated text-xs font-semibold text-heading hover:border-muted transition-colors cursor-pointer"
             >
               Lock Vault
             </button>
@@ -540,7 +540,7 @@ export default function VaultPage() {
           <button
             type="button"
             onClick={handleSignOut}
-            className="px-4 py-2 rounded border border-neutral-300 bg-white text-xs font-semibold uppercase tracking-wider text-neutral-700 hover:text-red-700 hover:border-red-300 transition-colors cursor-pointer"
+            className="px-4 py-2 rounded border border-muted/60 bg-elevated text-xs font-semibold text-body hover:text-danger-300 hover:border-danger-400/60 transition-colors cursor-pointer"
           >
             Sign Out
           </button>
@@ -550,20 +550,20 @@ export default function VaultPage() {
       {globalError && (
         <div
           role="alert"
-          className="p-4 rounded border border-red-300 bg-red-50 text-xs text-red-900"
+          className="p-4 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200"
         >
           {globalError}
         </div>
       )}
 
       {/* Vault Passphrase Unlock / Active Control Box */}
-      <section className="p-6 rounded border border-neutral-200 bg-[#f8faf9]">
+      <section className="p-6 rounded border border-line bg-surface">
         {!activePassphrase ? (
           <div>
-            <h2 className="text-base font-semibold text-[#0a0a0a]">
+            <h2 className="text-base font-semibold text-heading">
               Unlock Vault with Local Passphrase
             </h2>
-            <p className="mt-1 text-xs text-neutral-600 leading-relaxed max-w-3xl">
+            <p className="mt-1 text-xs text-body leading-relaxed max-w-3xl">
               Your vault passphrase is kept exclusively in React memory state. It is never saved to localStorage, sessionStorage, or cookies, and is never transmitted to the server. Each item derives a 256-bit AES-GCM key using PBKDF2-SHA256 (600,000 iterations).
             </p>
             <form
@@ -576,11 +576,11 @@ export default function VaultPage() {
                 onChange={(e) => setPassphraseInput(e.target.value)}
                 placeholder="Enter your local vault passphrase..."
                 required
-                className="flex-1 px-3.5 py-2.5 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                className="flex-1 px-3.5 py-2.5 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
               />
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded bg-[#0E7A5F] text-white text-sm font-medium hover:bg-[#0b614b] transition-colors cursor-pointer"
+                className="px-5 py-2.5 rounded bg-brass text-night text-sm font-medium hover:bg-brass-deep transition-colors cursor-pointer"
               >
                 Unlock Vault
               </button>
@@ -589,17 +589,17 @@ export default function VaultPage() {
         ) : (
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+              <div className="text-xs font-mono text-ok-300 font-semibold">
                 Active Passphrase Loaded in Memory
               </div>
-              <p className="mt-1 text-xs text-neutral-600">
+              <p className="mt-1 text-xs text-body">
                 You can now encrypt new secrets or click any existing record below to derive its key and decrypt in place. Locking the vault immediately wipes the passphrase and all decrypted secrets from browser memory.
               </p>
             </div>
             <button
               type="button"
               onClick={handleLockVault}
-              className="self-start sm:self-center shrink-0 px-4 py-2 rounded bg-[#0a0a0a] text-white text-xs font-semibold uppercase tracking-wider hover:bg-neutral-800 transition-colors cursor-pointer"
+              className="self-start sm:self-center shrink-0 px-4 py-2 rounded bg-brass text-night text-xs font-semibold hover:bg-brass-deep transition-colors cursor-pointer"
             >
               Clear Key &amp; Lock
             </button>
@@ -611,21 +611,21 @@ export default function VaultPage() {
       {activePassphrase && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Add Encrypted Item Form */}
-          <div className="lg:col-span-5 p-6 rounded border border-neutral-200 bg-white">
-            <div className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+          <div className="lg:col-span-5 p-6 rounded border border-line bg-surface">
+            <div className="text-xs font-mono text-brass font-semibold">
               Client-Side Encryption
             </div>
-            <h2 className="mt-1 text-lg font-bold text-[#0a0a0a]">
+            <h2 className="mt-1 text-lg font-bold text-heading">
               Add New Vault Secret
             </h2>
-            <p className="mt-1 text-xs text-neutral-600">
+            <p className="mt-1 text-xs text-body">
               Plaintext is encrypted with a fresh 16-byte salt and 12-byte IV before leaving your browser.
             </p>
 
             {formError && (
               <div
                 role="alert"
-                className="mt-4 p-3 rounded border border-red-300 bg-red-50 text-xs text-red-900"
+                className="mt-4 p-3 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200"
               >
                 {formError}
               </div>
@@ -635,7 +635,7 @@ export default function VaultPage() {
               <div>
                 <label
                   htmlFor="item-title"
-                  className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+                  className="block text-xs font-semibold text-body"
                 >
                   Title (Unencrypted Metadata)
                 </label>
@@ -648,14 +648,14 @@ export default function VaultPage() {
                   onChange={(e) => setNewTitle(e.target.value)}
                   disabled={savingItem}
                   placeholder="e.g., Production Database Credentials"
-                  className="mt-1.5 w-full px-3.5 py-2 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                  className="mt-1.5 w-full px-3.5 py-2 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="item-secret"
-                  className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+                  className="block text-xs font-semibold text-body"
                 >
                   Secret Plaintext (Encrypted Locally)
                 </label>
@@ -667,14 +667,14 @@ export default function VaultPage() {
                   onChange={(e) => setNewSecret(e.target.value)}
                   disabled={savingItem}
                   placeholder="Paste API key, recovery seed, password, or confidential note..."
-                  className="mt-1.5 w-full px-3.5 py-2 text-sm font-mono rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                  className="mt-1.5 w-full px-3.5 py-2 text-sm font-mono rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={savingItem}
-                className="w-full py-2.5 px-4 rounded bg-[#0E7A5F] text-white text-sm font-medium hover:bg-[#0b614b] transition-colors disabled:opacity-60 cursor-pointer"
+                className="w-full py-2.5 px-4 rounded bg-brass text-night text-sm font-medium hover:bg-brass-deep transition-colors disabled:opacity-60 cursor-pointer"
               >
                 {savingItem
                   ? "Deriving Key & Encrypting..."
@@ -686,7 +686,7 @@ export default function VaultPage() {
           {/* Right Column: Searchable Vault Items List */}
           <div className="lg:col-span-7 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <h2 className="text-lg font-bold text-[#0a0a0a]">
+              <h2 className="text-lg font-bold text-heading">
                 Stored Vault Records ({items.length})
               </h2>
               <input
@@ -694,22 +694,22 @@ export default function VaultPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search items by title..."
-                className="w-full sm:w-64 px-3.5 py-2 text-xs rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                className="w-full sm:w-64 px-3.5 py-2 text-xs rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
               />
             </div>
 
             {loadingItems ? (
-              <div className="p-8 rounded border border-neutral-200 bg-white text-xs font-mono text-neutral-500">
+              <div className="p-8 rounded border border-line bg-surface text-xs font-mono text-muted">
                 Loading encrypted records...
               </div>
             ) : filteredItems.length === 0 ? (
-              <div className="p-8 rounded border border-neutral-200 bg-white text-center">
-                <p className="text-sm font-semibold text-[#0a0a0a]">
+              <div className="p-8 rounded border border-line bg-surface text-center">
+                <p className="text-sm font-semibold text-heading">
                   {items.length === 0
                     ? "Your encrypted vault is empty."
                     : "No vault items match your search filter."}
                 </p>
-                <p className="mt-1 text-xs text-neutral-600">
+                <p className="mt-1 text-xs text-body">
                   {items.length === 0
                     ? "Use the form on the left to encrypt and store your first secret."
                     : "Try clearing or changing your search query."}
@@ -726,14 +726,14 @@ export default function VaultPage() {
                   return (
                     <div
                       key={item.id}
-                      className="p-5 rounded border border-neutral-200 bg-white transition-colors"
+                      className="p-5 rounded border border-line bg-surface transition-colors"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                         <div>
-                          <h3 className="text-base font-semibold text-[#0a0a0a]">
+                          <h3 className="text-base font-semibold text-heading">
                             {item.title}
                           </h3>
-                          <div className="mt-0.5 text-xs font-mono text-neutral-500">
+                          <div className="mt-0.5 text-xs font-mono text-muted">
                             Created{" "}
                             {new Date(item.created_at).toLocaleDateString(
                               undefined,
@@ -753,7 +753,7 @@ export default function VaultPage() {
                             type="button"
                             onClick={() => void handleToggleDecryptItem(item)}
                             disabled={isDecrypting}
-                            className="px-3 py-1.5 rounded bg-[#0E7A5F] text-white text-xs font-medium hover:bg-[#0b614b] transition-colors disabled:opacity-60 cursor-pointer"
+                            className="px-3 py-1.5 rounded bg-brass text-night text-xs font-medium hover:bg-brass-deep transition-colors disabled:opacity-60 cursor-pointer"
                           >
                             {isDecrypting
                               ? "Decrypting..."
@@ -765,7 +765,7 @@ export default function VaultPage() {
                           <button
                             type="button"
                             onClick={() => void handleStartEdit(item)}
-                            className="px-3 py-1.5 rounded border border-neutral-300 bg-white text-xs font-medium text-[#0a0a0a] hover:border-[#0a0a0a] transition-colors cursor-pointer"
+                            className="px-3 py-1.5 rounded border border-muted/60 bg-elevated text-xs font-medium text-heading hover:border-muted transition-colors cursor-pointer"
                           >
                             Edit
                           </button>
@@ -777,7 +777,7 @@ export default function VaultPage() {
                                 ? setShareState(null)
                                 : openShareModal(item.id)
                             }
-                            className="px-3 py-1.5 rounded border border-neutral-300 bg-white text-xs font-medium text-[#0a0a0a] hover:border-[#0a0a0a] transition-colors cursor-pointer"
+                            className="px-3 py-1.5 rounded border border-muted/60 bg-elevated text-xs font-medium text-heading hover:border-muted transition-colors cursor-pointer"
                           >
                             {isSharingThis ? "Close Share" : "Create Share Link"}
                           </button>
@@ -785,7 +785,7 @@ export default function VaultPage() {
                           <button
                             type="button"
                             onClick={() => void handleDeleteItem(item.id)}
-                            className="px-3 py-1.5 rounded border border-neutral-200 bg-white text-xs font-medium text-red-700 hover:border-red-400 hover:bg-red-50 transition-colors cursor-pointer"
+                            className="px-3 py-1.5 rounded border border-line bg-elevated text-xs font-medium text-danger-300 hover:border-danger-400 hover:bg-danger-400/10 transition-colors cursor-pointer"
                           >
                             Delete
                           </button>
@@ -795,7 +795,7 @@ export default function VaultPage() {
                       {itemError && (
                         <div
                           role="alert"
-                          className="mt-3 p-3 rounded border border-red-300 bg-red-50 text-xs text-red-900"
+                          className="mt-3 p-3 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200"
                         >
                           {itemError}
                         </div>
@@ -804,10 +804,10 @@ export default function VaultPage() {
                       {editingId === item.id && (
                         <form
                           onSubmit={(e) => void handleSaveEdit(e, item)}
-                          className="mt-4 space-y-3 p-4 rounded border border-neutral-300 bg-[#f8faf9]"
+                          className="mt-4 space-y-3 p-4 rounded border border-muted/60 bg-elevated"
                         >
                           <div>
-                            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700">
+                            <label className="block text-xs font-semibold text-body">
                               Title
                             </label>
                             <input
@@ -817,11 +817,11 @@ export default function VaultPage() {
                               value={editTitle}
                               onChange={(e) => setEditTitle(e.target.value)}
                               disabled={savingEdit}
-                              className="mt-1.5 w-full px-3.5 py-2 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                              className="mt-1.5 w-full px-3.5 py-2 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
                             />
                           </div>
                           <div>
-                            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700">
+                            <label className="block text-xs font-semibold text-body">
                               Secret (re-encrypted on save)
                             </label>
                             <textarea
@@ -830,21 +830,21 @@ export default function VaultPage() {
                               value={editSecret}
                               onChange={(e) => setEditSecret(e.target.value)}
                               disabled={savingEdit}
-                              className="mt-1.5 w-full px-3.5 py-2 text-sm font-mono rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                              className="mt-1.5 w-full px-3.5 py-2 text-sm font-mono rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
                             />
                           </div>
                           <div className="flex items-center gap-2">
                             <button
                               type="submit"
                               disabled={savingEdit}
-                              className="px-4 py-2 rounded bg-[#0E7A5F] text-white text-xs font-medium hover:bg-[#0b614b] transition-colors disabled:opacity-60 cursor-pointer"
+                              className="px-4 py-2 rounded bg-brass text-night text-xs font-medium hover:bg-brass-deep transition-colors disabled:opacity-60 cursor-pointer"
                             >
                               {savingEdit ? "Re-encrypting..." : "Save Changes"}
                             </button>
                             <button
                               type="button"
                               onClick={() => setEditingId(null)}
-                              className="px-4 py-2 rounded border border-neutral-300 bg-white text-xs font-medium text-[#0a0a0a] hover:border-[#0a0a0a] transition-colors cursor-pointer"
+                              className="px-4 py-2 rounded border border-muted/60 bg-elevated text-xs font-medium text-heading hover:border-muted transition-colors cursor-pointer"
                             >
                               Cancel
                             </button>
@@ -853,9 +853,9 @@ export default function VaultPage() {
                       )}
 
                       {isDecrypted && (
-                        <div className="mt-4 p-4 rounded border border-[#0E7A5F]/40 bg-[#f0fdf8]">
+                        <div className="mt-4 p-4 rounded border border-brass/40 bg-brass/10">
                           <div className="flex items-center justify-between gap-2 mb-2">
-                            <span className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+                            <span className="text-xs font-mono text-brass font-semibold">
                               Decrypted Plaintext
                             </span>
                             <button
@@ -866,31 +866,31 @@ export default function VaultPage() {
                                   decryptedMap[item.id] ?? ""
                                 )
                               }
-                              className="px-2.5 py-1 rounded bg-white border border-[#0E7A5F]/40 text-xs font-mono font-medium text-[#0E7A5F] hover:bg-[#0E7A5F] hover:text-white transition-colors cursor-pointer"
+                              className="px-2.5 py-1 rounded bg-elevated border border-brass/40 text-xs font-mono font-medium text-brass hover:bg-brass hover:text-night transition-colors cursor-pointer"
                             >
                               {copiedId === item.id ? "Copied" : "Copy Secret"}
                             </button>
                           </div>
-                          <pre className="text-xs font-mono text-[#0a0a0a] whitespace-pre-wrap break-all bg-white p-3 rounded border border-neutral-200">
+                          <pre className="text-xs font-mono text-heading whitespace-pre-wrap break-all bg-elevated p-3 rounded border border-line">
                             {decryptedMap[item.id]}
                           </pre>
                         </div>
                       )}
 
                       {isSharingThis && shareState && (
-                        <div className="mt-4 p-4 rounded border border-neutral-300 bg-[#f8faf9] space-y-4">
+                        <div className="mt-4 p-4 rounded border border-muted/60 bg-elevated space-y-4">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-mono uppercase tracking-wider text-[#0a0a0a] font-semibold">
+                            <span className="text-xs font-mono text-heading font-semibold">
                               Zero-Knowledge Encrypted Share Link
                             </span>
                           </div>
-                          <p className="text-xs text-neutral-600 leading-relaxed">
+                          <p className="text-xs text-body leading-relaxed">
                             Creates a public link containing only this item&apos;s ciphertext, salt, and IV. Anyone opening the link must still enter the exact vault passphrase used to encrypt this item.
                           </p>
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                              <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700">
+                              <label className="block text-xs font-semibold text-body">
                                 Expiration Window
                               </label>
                               <select
@@ -906,7 +906,7 @@ export default function VaultPage() {
                                       : null
                                   )
                                 }
-                                className="mt-1 w-full px-3 py-2 text-xs rounded border border-neutral-300 bg-white text-[#0a0a0a]"
+                                className="mt-1 w-full px-3 py-2 text-xs rounded border border-muted/60 bg-elevated text-heading"
                               >
                                 <option value={1}>1 Hour</option>
                                 <option value={24}>24 Hours</option>
@@ -915,7 +915,7 @@ export default function VaultPage() {
                             </div>
 
                             <div>
-                              <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700">
+                              <label className="block text-xs font-semibold text-body">
                                 Maximum Views
                               </label>
                               <select
@@ -931,7 +931,7 @@ export default function VaultPage() {
                                       : null
                                   )
                                 }
-                                className="mt-1 w-full px-3 py-2 text-xs rounded border border-neutral-300 bg-white text-[#0a0a0a]"
+                                className="mt-1 w-full px-3 py-2 text-xs rounded border border-muted/60 bg-elevated text-heading"
                               >
                                 <option value={1}>1 View (Self-Destruct)</option>
                                 <option value={5}>5 Views</option>
@@ -941,7 +941,7 @@ export default function VaultPage() {
                           </div>
 
                           {shareState.error && (
-                            <div className="p-2.5 rounded border border-red-300 bg-red-50 text-xs text-red-900">
+                            <div className="p-2.5 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200">
                               {shareState.error}
                             </div>
                           )}
@@ -951,7 +951,7 @@ export default function VaultPage() {
                               type="button"
                               disabled={shareState.creating}
                               onClick={() => void handleCreateShareLink(item)}
-                              className="px-4 py-2 rounded bg-[#0E7A5F] text-white text-xs font-medium hover:bg-[#0b614b] transition-colors disabled:opacity-60 cursor-pointer"
+                              className="px-4 py-2 rounded bg-brass text-night text-xs font-medium hover:bg-brass-deep transition-colors disabled:opacity-60 cursor-pointer"
                             >
                               {shareState.creating
                                 ? "Generating Share Link..."
@@ -959,7 +959,7 @@ export default function VaultPage() {
                             </button>
                           ) : (
                             <div className="space-y-2">
-                              <div className="text-xs font-semibold text-[#0E7A5F]">
+                              <div className="text-xs font-semibold text-ok-300">
                                 Share URL Ready:
                               </div>
                               <div className="flex items-center gap-2">
@@ -967,7 +967,7 @@ export default function VaultPage() {
                                   type="text"
                                   readOnly
                                   value={shareState.generatedUrl}
-                                  className="flex-1 px-3 py-2 text-xs font-mono rounded border border-neutral-300 bg-white text-[#0a0a0a]"
+                                  className="flex-1 px-3 py-2 text-xs font-mono rounded border border-muted/60 bg-elevated text-heading"
                                 />
                                 <button
                                   type="button"
@@ -976,7 +976,7 @@ export default function VaultPage() {
                                       shareState.generatedUrl ?? ""
                                     )
                                   }
-                                  className="px-3.5 py-2 rounded bg-[#0a0a0a] text-white text-xs font-medium hover:bg-neutral-800 transition-colors cursor-pointer"
+                                  className="px-3.5 py-2 rounded bg-elevated border border-muted/60 text-heading text-xs font-medium hover:border-muted transition-colors cursor-pointer"
                                 >
                                   {copiedShareUrl ? "Copied URL" : "Copy URL"}
                                 </button>
@@ -995,15 +995,15 @@ export default function VaultPage() {
       )}
 
       {!activePassphrase && (
-        <div className="p-10 rounded border border-neutral-200 bg-white text-center">
-          <div className="text-xs font-mono uppercase tracking-wider text-neutral-500">
+        <div className="p-10 rounded border border-line bg-surface text-center">
+          <div className="text-xs font-mono text-muted">
             Zero-Knowledge Protection Active
           </div>
-          <h3 className="mt-2 text-lg font-semibold text-[#0a0a0a]">
+          <h3 className="mt-2 text-lg font-semibold text-heading">
             Your vault is currently locked ({items.length} encrypted{" "}
             {items.length === 1 ? "record" : "records"} stored).
           </h3>
-          <p className="mt-1 text-xs text-neutral-600 max-w-md mx-auto">
+          <p className="mt-1 text-xs text-body max-w-md mx-auto">
             Enter your vault passphrase above to unlock client-side encryption, add new secrets, or decrypt your existing records.
           </p>
         </div>

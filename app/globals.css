@@ -1,38 +1,60 @@
+/* Hallmark · shape: app screen · redesign: polish · theme: Midnight Navy + Brass (user-approved palette 4A, not a dealt theme) · posture: restrained · copy: verbatim · nav: wordmark + links + brass action · footer: single hairline row */
+/* Hallmark · pre-emit critique: P4 H4 E5 S4 R4 V4 · weakest: P, the shipped copy keeps its dashes and one arrow by the verbatim rule; tracked caps were de-cased to sentence case and mono is declared as the outlier face for cipher metadata */
+/* Hallmark · note: mono outlier face (--font-outlier) is the vault's technical voice for cryptographic metadata (entropy, salts, IVs, view counts); semantic colours are theme tokens, green reserved for verified / locked states only */
 @import "tailwindcss";
 
 @theme {
-  --color-sea-50: #f0fdf8;
-  --color-sea-100: #dcfce9;
-  --color-sea-200: #bbf7d4;
-  --color-sea-500: #149674;
-  --color-sea-600: #0E7A5F;
-  --color-sea-700: #0b614b;
-  --color-sea-800: #094d3c;
-  --color-sea-900: #073b2e;
+  /* CipherVault — "Midnight Navy + Brass" (4A). Approved 2026-11-12.
+     Page #0B1220, surface #111A2E, elevated #16213A, brass #D4AF37
+     (dark label #0B1220, hover #B08D2E), steel #7FA3D8 for links/info,
+     headings #F1F5F9, body #CBD5E1, muted #94A3B8, borders #243044.
+     Semantic: danger reds and ok greens below; green is reserved for
+     verified / locked states only and never competes with gold. */
+  --color-night: #0b1220;
+  --color-surface: #111a2e;
+  --color-elevated: #16213a;
+  --color-brass: #d4af37;
+  --color-brass-deep: #b08d2e;
+  --color-steel: #7fa3d8;
+  --color-heading: #f1f5f9;
+  --color-body: #cbd5e1;
+  --color-muted: #94a3b8;
+  --color-line: #243044;
 
-  --color-ink: #0a0a0a;
-  --color-ink-muted: #525252;
-  --color-surface: #ffffff;
-  --color-surface-subtle: #f8faf9;
-  --color-border: #e5e7eb;
+  /* Semantic colours — always paired with an icon + words, never colour alone. */
+  --color-danger-200: #fecaca;
+  --color-danger-300: #fca5a5;
+  --color-danger-400: #f87171;
+  --color-ok-300: #6ee7b7;
+  --color-ok-400: #34d399;
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-outlier: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+
   html,
   body {
     overflow-x: clip;
-    background-color: var(--color-surface);
-    color: var(--color-ink);
+    background-color: var(--color-night);
+    color: var(--color-body);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  ::placeholder {
+    color: var(--color-muted);
+    opacity: 0.7;
+  }
+
   ::selection {
-    background-color: var(--color-sea-600);
-    color: #ffffff;
+    background-color: var(--color-brass);
+    color: var(--color-night);
   }
 }

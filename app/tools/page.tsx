@@ -198,37 +198,37 @@ export default function CryptoToolsPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
       {/* Header */}
-      <div className="border-b border-neutral-200 pb-6">
-        <div className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+      <div className="border-b border-line pb-6">
+        <div className="text-xs font-mono text-brass font-semibold">
           Offline Client-Side Utilities
         </div>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#0a0a0a]">
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-heading">
           Local Cryptographic Tools
         </h1>
-        <p className="mt-2 text-sm text-neutral-600 max-w-3xl leading-relaxed">
-          All operations on this page run entirely inside your browser via WebCrypto (<code className="font-mono text-xs bg-neutral-100 px-1.5 py-0.5 rounded">PBKDF2-SHA256</code>, <code className="font-mono text-xs bg-neutral-100 px-1.5 py-0.5 rounded">AES-256-GCM</code>, and <code className="font-mono text-xs bg-neutral-100 px-1.5 py-0.5 rounded">crypto.getRandomValues</code>). No files, passphrases, or generated secrets are ever uploaded.
+        <p className="mt-2 text-sm text-body max-w-3xl leading-relaxed">
+          All operations on this page run entirely inside your browser via WebCrypto (<code className="font-mono text-xs bg-elevated px-1.5 py-0.5 rounded">PBKDF2-SHA256</code>, <code className="font-mono text-xs bg-elevated px-1.5 py-0.5 rounded">AES-256-GCM</code>, and <code className="font-mono text-xs bg-elevated px-1.5 py-0.5 rounded">crypto.getRandomValues</code>). No files, passphrases, or generated secrets are ever uploaded.
         </p>
       </div>
 
       {/* Section A: File Encryption & Decryption */}
       <section className="space-y-6">
         <div>
-          <h2 className="text-xl font-bold text-[#0a0a0a]">
+          <h2 className="text-xl font-bold text-heading">
             Binary File Encryption &amp; Decryption
           </h2>
-          <p className="mt-1 text-xs text-neutral-600">
+          <p className="mt-1 text-xs text-body">
             Encrypted <code className="font-mono">.vault</code> files pack a 16-byte random salt, 12-byte random IV, and authenticated AES-256-GCM ciphertext into a single portable binary container.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Encrypt File Card */}
-          <div className="p-6 rounded border border-neutral-200 bg-white flex flex-col justify-between">
+          <div className="p-6 rounded border border-line bg-surface flex flex-col justify-between">
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+              <div className="text-xs font-mono text-brass font-semibold">
                 Mode 01 / Encrypt to .vault
               </div>
-              <h3 className="mt-1 text-lg font-bold text-[#0a0a0a]">
+              <h3 className="mt-1 text-lg font-bold text-heading">
                 Encrypt Local File
               </h3>
 
@@ -255,8 +255,8 @@ export default function CryptoToolsPage() {
                   onClick={() => encryptInputRef.current?.click()}
                   className={`p-6 border-2 border-dashed rounded text-center cursor-pointer transition-colors ${
                     isDraggingEnc
-                      ? "border-[#0E7A5F] bg-[#f0fdf8]"
-                      : "border-neutral-300 bg-[#f8faf9] hover:border-[#0E7A5F]"
+                      ? "border-brass bg-brass/10"
+                      : "border-muted/60 bg-elevated hover:border-brass"
                   }`}
                 >
                   <input
@@ -272,19 +272,19 @@ export default function CryptoToolsPage() {
                   />
                   {encryptFile ? (
                     <div>
-                      <div className="text-sm font-semibold text-[#0a0a0a]">
+                      <div className="text-sm font-semibold text-heading">
                         {encryptFile.name}
                       </div>
-                      <div className="mt-1 text-xs font-mono text-neutral-500">
+                      <div className="mt-1 text-xs font-mono text-muted">
                         {(encryptFile.size / 1024).toFixed(2)} KB — Click or drop to replace
                       </div>
                     </div>
                   ) : (
                     <div>
-                      <div className="text-sm font-medium text-[#0a0a0a]">
+                      <div className="text-sm font-medium text-heading">
                         Drag and drop any file here, or click to browse
                       </div>
-                      <div className="mt-1 text-xs text-neutral-500">
+                      <div className="mt-1 text-xs text-muted">
                         Processed 100% in browser memory
                       </div>
                     </div>
@@ -294,7 +294,7 @@ export default function CryptoToolsPage() {
                 <div>
                   <label
                     htmlFor="enc-file-pass"
-                    className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+                    className="block text-xs font-semibold text-body"
                   >
                     Encryption Passphrase
                   </label>
@@ -306,21 +306,21 @@ export default function CryptoToolsPage() {
                     onChange={(e) => setEncryptPassphrase(e.target.value)}
                     disabled={encryptBusy}
                     placeholder="Enter a strong passphrase..."
-                    className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                    className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
                   />
                 </div>
 
                 {encryptError && (
                   <div
                     role="alert"
-                    className="p-3 rounded border border-red-300 bg-red-50 text-xs text-red-900"
+                    className="p-3 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200"
                   >
                     {encryptError}
                   </div>
                 )}
 
                 {encryptSuccess && (
-                  <div className="p-3 rounded border border-[#0E7A5F]/40 bg-[#f0fdf8] text-xs text-[#0E7A5F] font-medium">
+                  <div className="p-3 rounded border border-ok-400/40 bg-ok-400/10 text-xs text-ok-300 font-medium">
                     {encryptSuccess}
                   </div>
                 )}
@@ -328,7 +328,7 @@ export default function CryptoToolsPage() {
                 <button
                   type="submit"
                   disabled={encryptBusy}
-                  className="w-full py-2.5 px-4 rounded bg-[#0E7A5F] text-white text-sm font-medium hover:bg-[#0b614b] transition-colors disabled:opacity-60 cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded bg-brass text-night text-sm font-medium hover:bg-brass-deep transition-colors disabled:opacity-60 cursor-pointer"
                 >
                   {encryptBusy
                     ? "Encrypting File (600,000 PBKDF2 Iterations)..."
@@ -339,12 +339,12 @@ export default function CryptoToolsPage() {
           </div>
 
           {/* Decrypt File Card */}
-          <div className="p-6 rounded border border-neutral-200 bg-white flex flex-col justify-between">
+          <div className="p-6 rounded border border-line bg-surface flex flex-col justify-between">
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+              <div className="text-xs font-mono text-brass font-semibold">
                 Mode 02 / Restore Original File
               </div>
-              <h3 className="mt-1 text-lg font-bold text-[#0a0a0a]">
+              <h3 className="mt-1 text-lg font-bold text-heading">
                 Decrypt .vault File
               </h3>
 
@@ -371,8 +371,8 @@ export default function CryptoToolsPage() {
                   onClick={() => decryptInputRef.current?.click()}
                   className={`p-6 border-2 border-dashed rounded text-center cursor-pointer transition-colors ${
                     isDraggingDec
-                      ? "border-[#0E7A5F] bg-[#f0fdf8]"
-                      : "border-neutral-300 bg-[#f8faf9] hover:border-[#0E7A5F]"
+                      ? "border-brass bg-brass/10"
+                      : "border-muted/60 bg-elevated hover:border-brass"
                   }`}
                 >
                   <input
@@ -389,19 +389,19 @@ export default function CryptoToolsPage() {
                   />
                   {decryptFile ? (
                     <div>
-                      <div className="text-sm font-semibold text-[#0a0a0a]">
+                      <div className="text-sm font-semibold text-heading">
                         {decryptFile.name}
                       </div>
-                      <div className="mt-1 text-xs font-mono text-neutral-500">
+                      <div className="mt-1 text-xs font-mono text-muted">
                         {(decryptFile.size / 1024).toFixed(2)} KB — Click or drop to replace
                       </div>
                     </div>
                   ) : (
                     <div>
-                      <div className="text-sm font-medium text-[#0a0a0a]">
+                      <div className="text-sm font-medium text-heading">
                         Drop a <span className="font-mono">.vault</span> file here, or click to select
                       </div>
-                      <div className="mt-1 text-xs text-neutral-500">
+                      <div className="mt-1 text-xs text-muted">
                         Extracts salt + IV and verifies GCM authentication tag
                       </div>
                     </div>
@@ -411,7 +411,7 @@ export default function CryptoToolsPage() {
                 <div>
                   <label
                     htmlFor="dec-file-pass"
-                    className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+                    className="block text-xs font-semibold text-body"
                   >
                     Decryption Passphrase
                   </label>
@@ -423,21 +423,21 @@ export default function CryptoToolsPage() {
                     onChange={(e) => setDecryptPassphrase(e.target.value)}
                     disabled={decryptBusy}
                     placeholder="Enter the passphrase used during encryption..."
-                    className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-neutral-300 bg-white text-[#0a0a0a] focus:outline-none focus:border-[#0E7A5F]"
+                    className="mt-1.5 w-full px-3.5 py-2.5 text-sm rounded border border-muted/60 bg-elevated text-heading focus:outline-none focus:border-brass"
                   />
                 </div>
 
                 {decryptError && (
                   <div
                     role="alert"
-                    className="p-3 rounded border border-red-300 bg-red-50 text-xs text-red-900"
+                    className="p-3 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200"
                   >
                     {decryptError}
                   </div>
                 )}
 
                 {decryptSuccess && (
-                  <div className="p-3 rounded border border-[#0E7A5F]/40 bg-[#f0fdf8] text-xs text-[#0E7A5F] font-medium">
+                  <div className="p-3 rounded border border-ok-400/40 bg-ok-400/10 text-xs text-ok-300 font-medium">
                     {decryptSuccess}
                   </div>
                 )}
@@ -445,7 +445,7 @@ export default function CryptoToolsPage() {
                 <button
                   type="submit"
                   disabled={decryptBusy}
-                  className="w-full py-2.5 px-4 rounded bg-[#0a0a0a] text-white text-sm font-medium hover:bg-neutral-800 transition-colors disabled:opacity-60 cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded bg-brass text-night text-sm font-medium hover:bg-brass-deep transition-colors disabled:opacity-60 cursor-pointer"
                 >
                   {decryptBusy
                     ? "Decrypting & Verifying Integrity..."
@@ -458,22 +458,22 @@ export default function CryptoToolsPage() {
       </section>
 
       {/* Section B: High-Entropy Password Generator */}
-      <section className="p-6 sm:p-8 rounded border border-neutral-200 bg-white space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-200 pb-4">
+      <section className="p-6 sm:p-8 rounded border border-line bg-surface space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-line pb-4">
           <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-[#0E7A5F] font-semibold">
+            <div className="text-xs font-mono text-brass font-semibold">
               CSPRNG Secret Generator
             </div>
-            <h2 className="mt-1 text-xl font-bold text-[#0a0a0a]">
+            <h2 className="mt-1 text-xl font-bold text-heading">
               Cryptographic Password Generator
             </h2>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="px-3 py-1.5 rounded border border-[#0E7A5F]/30 bg-[#f0fdf8] text-xs font-mono text-[#0E7A5F] font-semibold">
+            <div className="px-3 py-1.5 rounded border border-brass/30 bg-brass/10 text-xs font-mono text-brass font-semibold">
               Entropy: {entropyBits} bits
             </div>
-            <div className="px-3 py-1.5 rounded border border-neutral-200 bg-[#f8faf9] text-xs font-mono text-neutral-600">
+            <div className="px-3 py-1.5 rounded border border-line bg-elevated text-xs font-mono text-body">
               Pool: {activePoolSize} chars
             </div>
           </div>
@@ -482,7 +482,7 @@ export default function CryptoToolsPage() {
         {genError && (
           <div
             role="alert"
-            className="p-3 rounded border border-red-300 bg-red-50 text-xs text-red-900"
+            className="p-3 rounded border border-danger-400/40 bg-danger-400/10 text-xs text-danger-200"
           >
             {genError}
           </div>
@@ -490,14 +490,14 @@ export default function CryptoToolsPage() {
 
         {/* Output Display */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-          <div className="flex-1 p-4 rounded border border-neutral-300 bg-[#f8faf9] font-mono text-sm sm:text-base text-[#0a0a0a] break-all select-all">
+          <div className="flex-1 p-4 rounded border border-muted/60 bg-elevated font-mono text-sm sm:text-base text-heading break-all select-all">
             {generatedPassword || "—"}
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <button
               type="button"
               onClick={generatePassword}
-              className="px-4 py-3 rounded border border-neutral-300 bg-white text-xs font-semibold uppercase tracking-wider text-[#0a0a0a] hover:border-[#0a0a0a] transition-colors cursor-pointer"
+              className="px-4 py-3 rounded border border-muted/60 bg-elevated text-xs font-semibold text-heading hover:border-muted transition-colors cursor-pointer"
             >
               Generate
             </button>
@@ -505,7 +505,7 @@ export default function CryptoToolsPage() {
               type="button"
               disabled={!generatedPassword}
               onClick={() => void handleCopyGeneratedPassword()}
-              className="px-5 py-3 rounded bg-[#0E7A5F] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#0b614b] transition-colors disabled:opacity-50 cursor-pointer"
+              className="px-5 py-3 rounded bg-brass text-night text-xs font-semibold hover:bg-brass-deep transition-colors disabled:opacity-50 cursor-pointer"
             >
               {copiedPassword ? "Copied" : "Copy Password"}
             </button>
@@ -515,9 +515,9 @@ export default function CryptoToolsPage() {
         {/* Controls */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-2 items-center">
           <div className="md:col-span-5 space-y-2">
-            <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-neutral-700">
+            <div className="flex items-center justify-between text-xs font-semibold text-body">
               <label htmlFor="pw-length">Password Length</label>
-              <span className="font-mono text-sm text-[#0E7A5F]">
+              <span className="font-mono text-sm text-brass">
                 {length} characters
               </span>
             </div>
@@ -528,9 +528,9 @@ export default function CryptoToolsPage() {
               max={64}
               value={length}
               onChange={(e) => setLength(Number(e.target.value))}
-              className="w-full accent-[#0E7A5F] cursor-pointer"
+              className="w-full accent-brass cursor-pointer"
             />
-            <div className="flex justify-between text-[11px] font-mono text-neutral-400">
+            <div className="flex justify-between text-[11px] font-mono text-muted">
               <span>8</span>
               <span>24</span>
               <span>48</span>
@@ -539,42 +539,42 @@ export default function CryptoToolsPage() {
           </div>
 
           <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <label className="flex items-center gap-2.5 p-3 rounded border border-neutral-200 bg-[#f8faf9] text-xs font-medium text-[#0a0a0a] cursor-pointer">
+            <label className="flex items-center gap-2.5 p-3 rounded border border-line bg-elevated text-xs font-medium text-heading cursor-pointer">
               <input
                 type="checkbox"
                 checked={useUpper}
                 onChange={(e) => setUseUpper(e.target.checked)}
-                className="accent-[#0E7A5F] w-4 h-4"
+                className="accent-brass w-4 h-4"
               />
               <span>Uppercase (A-Z)</span>
             </label>
 
-            <label className="flex items-center gap-2.5 p-3 rounded border border-neutral-200 bg-[#f8faf9] text-xs font-medium text-[#0a0a0a] cursor-pointer">
+            <label className="flex items-center gap-2.5 p-3 rounded border border-line bg-elevated text-xs font-medium text-heading cursor-pointer">
               <input
                 type="checkbox"
                 checked={useLower}
                 onChange={(e) => setUseLower(e.target.checked)}
-                className="accent-[#0E7A5F] w-4 h-4"
+                className="accent-brass w-4 h-4"
               />
               <span>Lowercase (a-z)</span>
             </label>
 
-            <label className="flex items-center gap-2.5 p-3 rounded border border-neutral-200 bg-[#f8faf9] text-xs font-medium text-[#0a0a0a] cursor-pointer">
+            <label className="flex items-center gap-2.5 p-3 rounded border border-line bg-elevated text-xs font-medium text-heading cursor-pointer">
               <input
                 type="checkbox"
                 checked={useDigits}
                 onChange={(e) => setUseDigits(e.target.checked)}
-                className="accent-[#0E7A5F] w-4 h-4"
+                className="accent-brass w-4 h-4"
               />
               <span>Digits (0-9)</span>
             </label>
 
-            <label className="flex items-center gap-2.5 p-3 rounded border border-neutral-200 bg-[#f8faf9] text-xs font-medium text-[#0a0a0a] cursor-pointer">
+            <label className="flex items-center gap-2.5 p-3 rounded border border-line bg-elevated text-xs font-medium text-heading cursor-pointer">
               <input
                 type="checkbox"
                 checked={useSymbols}
                 onChange={(e) => setUseSymbols(e.target.checked)}
-                className="accent-[#0E7A5F] w-4 h-4"
+                className="accent-brass w-4 h-4"
               />
               <span>Symbols (!@#$)</span>
             </label>
