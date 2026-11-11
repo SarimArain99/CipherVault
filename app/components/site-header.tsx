@@ -71,26 +71,44 @@ export default function SiteHeader() {
           </Link>
         </nav>
 
-        {/* Mobile menu button — 44px touch target */}
+        {/* Mobile menu button — 44px touch target, exact SVG icons so the
+            menu lines and the X can never drift off-centre. */}
         <button
           type="button"
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           onClick={() => setMenuOpen((open) => !open)}
-          className="md:hidden w-11 h-11 shrink-0 flex flex-col items-center justify-center gap-1.5 rounded border border-neutral-300 bg-white text-[#0a0a0a] hover:border-[#0a0a0a] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F] cursor-pointer"
+          className="md:hidden w-11 h-11 shrink-0 flex items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E7A5F] cursor-pointer"
         >
-          <span
-            aria-hidden="true"
-            className={`block h-0.5 w-5 bg-current transition-transform duration-200 ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`}
-          />
-          <span
-            aria-hidden="true"
-            className={`block h-0.5 w-5 bg-current transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`}
-          />
-          <span
-            aria-hidden="true"
-            className={`block h-0.5 w-5 bg-current transition-transform duration-200 ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
-          />
+          <span className="relative block w-6 h-6" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className={`absolute inset-0 w-6 h-6 transition duration-200 ${
+                menuOpen ? "opacity-0 scale-90" : "opacity-100 scale-100"
+              }`}
+            >
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="17" x2="20" y2="17" />
+            </svg>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className={`absolute inset-0 w-6 h-6 transition duration-200 ${
+                menuOpen ? "opacity-100 scale-100" : "opacity-0 scale-90"
+              }`}
+            >
+              <line x1="5" y1="5" x2="19" y2="19" />
+              <line x1="19" y1="5" x2="5" y2="19" />
+            </svg>
+          </span>
         </button>
       </div>
 
