@@ -1000,8 +1000,15 @@ export default function VaultPage() {
             Zero-Knowledge Protection Active
           </div>
           <h3 className="mt-2 text-lg font-semibold text-heading">
-            Your vault is currently locked ({items.length} encrypted{" "}
-            {items.length === 1 ? "record" : "records"} stored).
+            Your vault is currently locked
+            {!loadingItems && (
+              <>
+                {" "}
+                ({items.length} encrypted {items.length === 1 ? "record" : "records"}{" "}
+                stored)
+              </>
+            )}
+            .
           </h3>
           <p className="mt-1 text-xs text-body max-w-md mx-auto">
             Enter your vault passphrase above to unlock client-side encryption, add new secrets, or decrypt your existing records.

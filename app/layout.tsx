@@ -34,7 +34,7 @@ export default function RootLayout({
               <span>— Zero-Knowledge Architecture</span>
             </div>
             <div className="font-mono">
-              PBKDF2-SHA256 (600,000 iter) · AES-256-GCM · WebCrypto API
+              PBKDF2-SHA256 (600,000 iter), AES-256-GCM, WebCrypto API
             </div>
           </div>
         </footer>
